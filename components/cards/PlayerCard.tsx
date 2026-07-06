@@ -1,22 +1,17 @@
+import { Player } from "@/data/players";
 import { Colors } from "@/theme/colors";
 import { LinearGradient } from "expo-linear-gradient";
-import { ImageBackground, ImageSourcePropType, StyleSheet, Text, View } from "react-native";
+import { ImageBackground, StyleSheet, Text, View } from "react-native";
 
 type PlayerCardProps = {
-  name: string;
-  subtitle: string;
-  image: ImageSourcePropType;
-};
+    player: Player;
+  };
 
-export function PlayerCard({
-  name,
-  subtitle,
-  image,
-}: PlayerCardProps) {
+  export function PlayerCard({ player }: PlayerCardProps) {
   return (
     <View style={styles.card}>
       <ImageBackground
-        source={image}
+        source={player.image}
         style={styles.image}
         imageStyle={styles.imageBorder}
       >
@@ -24,8 +19,8 @@ export function PlayerCard({
           colors={["transparent", "rgba(0,0,0,0.9)"]}
           style={styles.overlay}
         >
-          <Text style={styles.name}>{name}</Text>
-          <Text style={styles.subtitle}>{subtitle}</Text>
+          <Text style={styles.name}>{player.name}</Text>
+          <Text style={styles.subtitle}>{player.subtitle}</Text>
         </LinearGradient>
       </ImageBackground>
     </View>
