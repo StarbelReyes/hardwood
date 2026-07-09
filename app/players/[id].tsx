@@ -1,9 +1,18 @@
+import { InfoRow } from "@/components/profile/InfoRow";
 import { players } from "@/data/players";
 import { useLocalSearchParams } from "expo-router";
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
-
+import {
+    ImageBackground,
+    ScrollView,
+    StyleSheet,
+    Text,
+    View,
+} from "react-native";
 export default function PlayerScreen() {
   const { id } = useLocalSearchParams();
+
+  
+
   const player = players.find((p) => p.id === Number(id));
   if (!player) {
     
@@ -16,7 +25,11 @@ export default function PlayerScreen() {
 
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={styles.content}
+      showsVerticalScrollIndicator={false}
+    >
       <ImageBackground
         source={player.image}
         style={styles.image}
@@ -29,20 +42,15 @@ export default function PlayerScreen() {
         {player.subtitle}
       </Text>
       <View style={styles.infoCard}>
-  <Text style={styles.label}>Position</Text>
-  <Text style={styles.value}>{player.position}</Text>
+  <InfoRow label="Position" value={player.position} />
 
-  <Text style={styles.label}>Height</Text>
-  <Text style={styles.value}>{player.height}</Text>
+  <InfoRow label="Height" value={player.height} />
 
-  <Text style={styles.label}>Weight</Text>
-  <Text style={styles.value}>{player.weight}</Text>
+  <InfoRow label="Weight" value={player.weight} />
 
-  <Text style={styles.label}>Championships</Text>
-  <Text style={styles.value}>{player.championships}</Text>
+  <InfoRow label="Championships" value={player.championships} />
 
-  <Text style={styles.label}>MVP Awards</Text>
-  <Text style={styles.value}>{player.mvps}</Text>
+  <InfoRow label="MVP Awards" value={player.mvps} />
 </View>
 
 <Text style={styles.bioTitle}>Biography</Text>
@@ -50,7 +58,7 @@ export default function PlayerScreen() {
 <Text style={styles.bio}>
   {player.bio}
 </Text>
-    </View>
+</ScrollView>
   );
 }
 
@@ -71,6 +79,10 @@ const styles = StyleSheet.create({
     color: "#9AA4B2",
     fontSize: 18,
     marginTop: 8,
+  },
+
+  content: {
+    paddingBottom: 40,
   },
 
   image: {
