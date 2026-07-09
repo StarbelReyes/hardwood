@@ -1,15 +1,23 @@
 import { Player } from "@/data/players";
 import { Colors } from "@/theme/colors";
 import { LinearGradient } from "expo-linear-gradient";
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
-
+import { router } from "expo-router";
+import {
+    ImageBackground,
+    Pressable,
+    StyleSheet,
+    Text
+} from "react-native";
 type PlayerCardProps = {
     player: Player;
   };
 
   export function PlayerCard({ player }: PlayerCardProps) {
   return (
-    <View style={styles.card}>
+    <Pressable
+  style={styles.card}
+  onPress={() => router.push(`/players/${player.id}`)}
+>
       <ImageBackground
         source={player.image}
         style={styles.image}
@@ -23,7 +31,7 @@ type PlayerCardProps = {
           <Text style={styles.subtitle}>{player.subtitle}</Text>
         </LinearGradient>
       </ImageBackground>
-    </View>
+      </Pressable>
   );
 }
 
