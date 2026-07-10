@@ -1,3 +1,4 @@
+import { Colors } from "@/theme/colors";
 import { StyleSheet, Text, View } from "react-native";
 
 type InfoRowProps = {
@@ -21,12 +22,12 @@ const styles = StyleSheet.create({
   },
 
   label: {
-    color: "#7B8794",
+    color: Colors.muted,
     fontSize: 14,
   },
 
   value: {
-    color: "white",
+    color: Colors.text,
     fontSize: 20,
     fontWeight: "600",
     marginTop: 4,

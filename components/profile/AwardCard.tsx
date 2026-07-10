@@ -1,3 +1,4 @@
+import { Colors } from "@/theme/colors";
 import { StyleSheet, Text, View } from "react-native";
 
 type AwardCardProps = {
@@ -24,7 +25,7 @@ export function AwardCard({
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "#151B28",
+    backgroundColor: Colors.card,
     borderRadius: 16,
     paddingVertical: 20,
     paddingHorizontal: 16,
@@ -42,13 +43,13 @@ const styles = StyleSheet.create({
   },
 
   value: {
-    color: "white",
+    color: Colors.text,
     fontSize: 28,
     fontWeight: "700",
   },
 
   label: {
-    color: "#9AA4B2",
+    color: Colors.muted,
     fontSize: 14,
     textAlign: "center",
     marginTop: 10,

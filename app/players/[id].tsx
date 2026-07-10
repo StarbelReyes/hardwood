@@ -1,6 +1,7 @@
 import { AwardCard } from "@/components/profile/AwardCard";
 import { InfoRow } from "@/components/profile/InfoRow";
 import { StatCard } from "@/components/profile/StatCard";
+import { TimelineCard } from "@/components/profile/TimelineCard";
 import { players } from "@/data/players";
 import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
@@ -96,6 +97,18 @@ export default function PlayerScreen() {
     />
   ))}
 </View>
+
+<Text style={styles.sectionTitle}>Career Timeline</Text>
+
+{player.timeline?.map((event) => (
+  <TimelineCard
+    key={`${event.year}-${event.title}`}
+    year={event.year}
+    icon={event.icon}
+    title={event.title}
+    description={event.description}
+  />
+))}
 
       <Text style={styles.bioTitle}>Biography</Text>
 

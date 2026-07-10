@@ -1,3 +1,4 @@
+import { Colors } from "@/theme/colors";
 import { StyleSheet, Text, View } from "react-native";
 
 type StatCardProps = {
@@ -17,7 +18,7 @@ export function StatCard({ label, value }: StatCardProps) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "#151B28",
+    backgroundColor: Colors.card,
     borderRadius: 16,
     paddingVertical: 20,
     alignItems: "center",
@@ -28,12 +29,12 @@ const styles = StyleSheet.create({
   },
 
   label: {
-    color: "#7B8794",
+    color: Colors.muted,
     fontSize: 14,
   },
 
   value: {
-    color: "white",
+    color: Colors.text,
     fontSize: 28,
     fontWeight: "700",
     marginTop: 8,

@@ -16,6 +16,12 @@ export interface Player {
         label: string;
         value: number;
       }[];
+      timeline: {
+        year: number;
+        icon: string;
+        title: string;
+        description: string;
+      }[];
   
     stats: {
       basic: {
@@ -30,6 +36,8 @@ export interface Player {
         value: number;
       }[];
     };
+
+    
   
     bio: string;
   }
@@ -77,6 +85,39 @@ export interface Player {
           icon: "🛡️",
           label: "DPOY",
           value: 1,
+        },
+      ],
+
+      timeline: [
+        {
+          year: 1984,
+          icon: "🏀",
+          title: "NBA Draft",
+          description: "Drafted 3rd overall by the Chicago Bulls.",
+        },
+        {
+          year: 1991,
+          icon: "🏆",
+          title: "First Championship",
+          description: "Won his first NBA championship and Finals MVP.",
+        },
+        {
+          year: 1993,
+          icon: "👑",
+          title: "First Three-Peat",
+          description: "Led the Bulls to their third straight NBA title.",
+        },
+        {
+          year: 1995,
+          icon: "📣",
+          title: "I'm Back",
+          description: "Returned to the NBA after retiring to play baseball.",
+        },
+        {
+          year: 1998,
+          icon: "🐐",
+          title: "The Last Shot",
+          description: "Hit the iconic game-winning shot against the Utah Jazz to win his sixth championship.",
         },
       ],
   
@@ -179,6 +220,45 @@ export interface Player {
               value: 2,
             },
           ],
+
+          timeline: [
+            {
+              year: 1996,
+              icon: "🏀",
+              title: "NBA Draft",
+              description: "Drafted 13th overall by the Charlotte Hornets and immediately traded to the Los Angeles Lakers.",
+            },
+            {
+              year: 2000,
+              icon: "🏆",
+              title: "First Championship",
+              description: "Won his first NBA championship alongside Shaquille O'Neal.",
+            },
+            {
+              year: 2006,
+              icon: "🔥",
+              title: "81-Point Game",
+              description: "Scored 81 points against the Toronto Raptors, the second-highest scoring game in NBA history.",
+            },
+            {
+              year: 2008,
+              icon: "⭐",
+              title: "League MVP",
+              description: "Won the NBA Most Valuable Player Award.",
+            },
+            {
+              year: 2010,
+              icon: "🏆",
+              title: "Back-to-Back Champion",
+              description: "Won his fifth NBA championship and second consecutive Finals MVP.",
+            },
+            {
+              year: 2016,
+              icon: "🎤",
+              title: "Final Game",
+              description: "Retired after scoring 60 points in his final NBA game.",
+            },
+          ],
       
         stats: {
           basic: [
@@ -278,6 +358,45 @@ export interface Player {
               icon: "🏆",
               label: "Finals MVP",
               value: 4,
+            },
+          ],
+
+          timeline: [
+            {
+              year: 2003,
+              icon: "🏀",
+              title: "NBA Draft",
+              description: "Selected first overall by the Cleveland Cavaliers.",
+            },
+            {
+              year: 2010,
+              icon: "🤝",
+              title: "The Decision",
+              description: "Joined the Miami Heat, forming one of the NBA's most famous superteams.",
+            },
+            {
+              year: 2012,
+              icon: "🏆",
+              title: "First Championship",
+              description: "Won his first NBA championship and Finals MVP with the Miami Heat.",
+            },
+            {
+              year: 2016,
+              icon: "👑",
+              title: "Historic Comeback",
+              description: "Led Cleveland back from a 3–1 deficit to win the franchise's first NBA championship.",
+            },
+            {
+              year: 2018,
+              icon: "💜",
+              title: "Joined the Lakers",
+              description: "Signed with the Los Angeles Lakers as a free agent.",
+            },
+            {
+              year: 2020,
+              icon: "🏆",
+              title: "Fourth Championship",
+              description: "Won his fourth NBA championship and fourth Finals MVP with the Lakers.",
             },
           ],
       
