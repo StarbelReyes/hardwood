@@ -1,18 +1,31 @@
 import { Player } from "@/data/players";
+import { isFavorite, toggleFavorite } from "@/lib/favorites";
 import { Colors } from "@/theme/colors";
+import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
+import { useEffect, useState } from "react";
 import {
-    ImageBackground,
-    Pressable,
-    StyleSheet,
-    Text
+  ImageBackground,
+  Pressable,
+  StyleSheet,
+  Text
 } from "react-native";
 type PlayerCardProps = {
     player: Player;
   };
 
   export function PlayerCard({ player }: PlayerCardProps) {
+    const [favorite, setFavorite] = useState(false);
+
+useEffect(() => {
+  async function loadFavorite() {
+    const result = await isFavorite(player.id);
+    setFavorite(result);
+  }
+
+  loadFavorite();
+}, [player.id]);
   return (
     <Pressable
   style={styles.card}
@@ -23,6 +36,19 @@ type PlayerCardProps = {
         style={styles.image}
         imageStyle={styles.imageBorder}
       >
+<Pressable
+  style={styles.favoriteButton}
+  onPress={async () => {
+    const updated = await toggleFavorite(player.id);
+    setFavorite(updated.includes(player.id));
+  }}
+>
+  <Ionicons
+    name={favorite ? "star" : "star-outline"}
+    size={28}
+    color="#FFD700"
+  />
+</Pressable>
         <LinearGradient
           colors={["transparent", "rgba(0,0,0,0.9)"]}
           style={styles.overlay}
@@ -67,5 +93,17 @@ const styles = StyleSheet.create({
     color: "#D1D5DB",
     fontSize: 18,
     marginTop: 6,
+  },
+  favoriteButton: {
+    position: "absolute",
+    top: 16,
+    right: 16,
+    zIndex: 10,
+  
+    backgroundColor: "rgba(0,0,0,0.35)",
+  
+    borderRadius: 999,
+  
+    padding: 8,
   },
 });

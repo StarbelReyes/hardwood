@@ -22,6 +22,11 @@ export interface Player {
         title: string;
         description: string;
       }[];
+      teams: {
+        id: string;
+        name: string;
+        years: string;
+      }[];
   
     stats: {
       basic: {
@@ -118,6 +123,24 @@ export interface Player {
           icon: "🐐",
           title: "The Last Shot",
           description: "Hit the iconic game-winning shot against the Utah Jazz to win his sixth championship.",
+        },
+      ],
+
+      teams: [
+        {
+          id: "bulls",
+          name: "Chicago Bulls",
+          years: "1984–1993",
+        },
+        {
+          id: "bulls-return",
+          name: "Chicago Bulls",
+          years: "1995–1998",
+        },
+        {
+          id: "wizards",
+          name: "Washington Wizards",
+          years: "2001–2003",
         },
       ],
   
@@ -218,6 +241,14 @@ export interface Player {
               icon: "🏆",
               label: "Finals MVP",
               value: 2,
+            },
+          ],
+
+          teams: [
+            {
+              id: "lakers",
+              name: "Los Angeles Lakers",
+              years: "1996–2016",
             },
           ],
 
@@ -358,6 +389,29 @@ export interface Player {
               icon: "🏆",
               label: "Finals MVP",
               value: 4,
+            },
+          ],
+
+          teams: [
+            {
+              id: "cavaliers-1",
+              name: "Cleveland Cavaliers",
+              years: "2003–2010",
+            },
+            {
+              id: "heat",
+              name: "Miami Heat",
+              years: "2010–2014",
+            },
+            {
+              id: "cavaliers-2",
+              name: "Cleveland Cavaliers",
+              years: "2014–2018",
+            },
+            {
+              id: "lakers",
+              name: "Los Angeles Lakers",
+              years: "2018–Present",
             },
           ],
 

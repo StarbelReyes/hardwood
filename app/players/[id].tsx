@@ -1,17 +1,18 @@
 import { AwardCard } from "@/components/profile/AwardCard";
 import { InfoRow } from "@/components/profile/InfoRow";
 import { StatCard } from "@/components/profile/StatCard";
+import { TeamCard } from "@/components/profile/TeamCard";
 import { TimelineCard } from "@/components/profile/TimelineCard";
 import { players } from "@/data/players";
 import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import {
-    ImageBackground,
-    Pressable,
-    ScrollView,
-    StyleSheet,
-    Text,
-    View,
+  ImageBackground,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
 } from "react-native";
 
 export default function PlayerScreen() {
@@ -107,6 +108,16 @@ export default function PlayerScreen() {
     icon={event.icon}
     title={event.title}
     description={event.description}
+  />
+))}
+
+<Text style={styles.sectionTitle}>Teams</Text>
+
+{player.teams.map((team) => (
+  <TeamCard
+    key={team.id}
+    name={team.name}
+    years={team.years}
   />
 ))}
 
