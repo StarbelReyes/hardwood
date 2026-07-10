@@ -4,60 +4,342 @@ export interface Player {
     subtitle: string;
     image: any;
   
-    position: string;
-    height: string;
-    weight: string;
+    info: {
+      position: string;
+      height: string;
+      weight: string;
+    };
   
-    championships: number;
-    mvps: number;
+    awards: {
+        key: string;
+        icon: string;
+        label: string;
+        value: number;
+      }[];
+  
+    stats: {
+      basic: {
+        key: string;
+        label: string;
+        value: number;
+      }[];
+  
+      advanced: {
+        key: string;
+        label: string;
+        value: number;
+      }[];
+    };
   
     bio: string;
   }
-
+  
   export const players: Player[] = [
     {
-        id: 1,
-        name: "Michael Jordan",
-        subtitle: "6× NBA Champion",
-        image: require("../assets/images/jordan.jpg"),
-      
+      id: 1,
+      name: "Michael Jordan",
+      subtitle: "6× NBA Champion",
+      image: require("../assets/images/jordan.jpg"),
+  
+      info: {
         position: "Shooting Guard",
         height: "6'6\"",
         weight: "216 lbs",
-        championships: 6,
-        mvps: 5,
-      
-        bio: "Michael Jordan is widely regarded as the greatest basketball player of all time. He led the Chicago Bulls to six NBA championships and won five MVP awards.",
       },
-      {
+  
+      awards: [
+        {
+          key: "championships",
+          icon: "🏆",
+          label: "Championships",
+          value: 6,
+        },
+        {
+          key: "mvps",
+          icon: "⭐",
+          label: "MVP Awards",
+          value: 5,
+        },
+        {
+          key: "allStars",
+          icon: "⭐",
+          label: "All-Star",
+          value: 14,
+        },
+        {
+          key: "finalsMvps",
+          icon: "🏆",
+          label: "Finals MVP",
+          value: 6,
+        },
+        {
+          key: "dpoy",
+          icon: "🛡️",
+          label: "DPOY",
+          value: 1,
+        },
+      ],
+  
+      stats: {
+        basic: [
+          {
+            key: "ppg",
+            label: "PPG",
+            value: 30.1,
+          },
+          {
+            key: "rpg",
+            label: "RPG",
+            value: 6.2,
+          },
+          {
+            key: "apg",
+            label: "APG",
+            value: 5.3,
+          },
+          {
+            key: "spg",
+            label: "SPG",
+            value: 2.3,
+          },
+          {
+            key: "bpg",
+            label: "BPG",
+            value: 0.8,
+          },
+        ],
+      
+        advanced: [
+          {
+            key: "fgPct",
+            label: "FG%",
+            value: 49.7,
+          },
+          {
+            key: "threePct",
+            label: "3PT%",
+            value: 32.7,
+          },
+          {
+            key: "ftPct",
+            label: "FT%",
+            value: 83.5,
+          },
+          {
+            key: "per",
+            label: "PER",
+            value: 27.9,
+          },
+          {
+            key: "tsPct",
+            label: "TS%",
+            value: 56.9,
+          },
+        ],
+      },
+      bio:
+        "Michael Jordan is widely regarded as the greatest basketball player of all time. He led the Chicago Bulls to six NBA championships and won five MVP awards.",
+    },
+  
+    {
         id: 2,
         name: "Kobe Bryant",
         subtitle: "5× NBA Champion",
         image: require("../assets/images/kobe.jpg"),
       
-        position: "Shooting Guard",
-        height: "6'6\"",
-        weight: "212 lbs",
+        info: {
+          position: "Shooting Guard",
+          height: "6'6\"",
+          weight: "212 lbs",
+        },
       
-        championships: 5,
-        mvps: 1,
+        awards: [
+            {
+              key: "championships",
+              icon: "🏆",
+              label: "Championships",
+              value: 5,
+            },
+            {
+              key: "mvps",
+              icon: "⭐",
+              label: "MVP Awards",
+              value: 1,
+            },
+            {
+              key: "allStars",
+              icon: "⭐",
+              label: "All-Star",
+              value: 18,
+            },
+            {
+              key: "finalsMvps",
+              icon: "🏆",
+              label: "Finals MVP",
+              value: 2,
+            },
+          ],
       
-        bio: "Kobe Bryant spent his entire 20-year NBA career with the Los Angeles Lakers, winning five championships and becoming one of the greatest scorers in basketball history.",
+        stats: {
+          basic: [
+            {
+              key: "ppg",
+              label: "PPG",
+              value: 25.0,
+            },
+            {
+              key: "rpg",
+              label: "RPG",
+              value: 5.2,
+            },
+            {
+              key: "apg",
+              label: "APG",
+              value: 4.7,
+            },
+            {
+              key: "spg",
+              label: "SPG",
+              value: 1.4,
+            },
+            {
+              key: "bpg",
+              label: "BPG",
+              value: 0.5,
+            },
+          ],
+      
+          advanced: [
+            {
+              key: "fgPct",
+              label: "FG%",
+              value: 44.7,
+            },
+            {
+              key: "threePct",
+              label: "3PT%",
+              value: 32.9,
+            },
+            {
+              key: "ftPct",
+              label: "FT%",
+              value: 83.7,
+            },
+            {
+              key: "per",
+              label: "PER",
+              value: 22.9,
+            },
+            {
+              key: "tsPct",
+              label: "TS%",
+              value: 55.0,
+            },
+          ],
+        },
+      
+        bio:
+          "Kobe Bryant spent his entire 20-year NBA career with the Los Angeles Lakers, winning five championships and becoming one of the greatest scorers in basketball history.",
       },
+  
       {
         id: 3,
         name: "LeBron James",
         subtitle: "4× NBA Champion",
         image: require("../assets/images/lebron.jpg"),
       
-        position: "Small Forward",
-        height: "6'9\"",
-        weight: "250 lbs",
+        info: {
+          position: "Small Forward",
+          height: "6'9\"",
+          weight: "250 lbs",
+        },
       
-        championships: 4,
-        mvps: 4,
+        awards: [
+            {
+              key: "championships",
+              icon: "🏆",
+              label: "Championships",
+              value: 4,
+            },
+            {
+              key: "mvps",
+              icon: "⭐",
+              label: "MVP Awards",
+              value: 4,
+            },
+            {
+              key: "allStars",
+              icon: "⭐",
+              label: "All-Star",
+              value: 21,
+            },
+            {
+              key: "finalsMvps",
+              icon: "🏆",
+              label: "Finals MVP",
+              value: 4,
+            },
+          ],
       
-        bio: "LeBron James is one of the most accomplished players in NBA history, known for his versatility, longevity, and impact on every team he has played for.",
+        stats: {
+          basic: [
+            {
+              key: "ppg",
+              label: "PPG",
+              value: 27.0,
+            },
+            {
+              key: "rpg",
+              label: "RPG",
+              value: 7.5,
+            },
+            {
+              key: "apg",
+              label: "APG",
+              value: 7.4,
+            },
+            {
+              key: "spg",
+              label: "SPG",
+              value: 1.5,
+            },
+            {
+              key: "bpg",
+              label: "BPG",
+              value: 0.7,
+            },
+          ],
+      
+          advanced: [
+            {
+              key: "fgPct",
+              label: "FG%",
+              value: 50.6,
+            },
+            {
+              key: "threePct",
+              label: "3PT%",
+              value: 35.0,
+            },
+            {
+              key: "ftPct",
+              label: "FT%",
+              value: 73.7,
+            },
+            {
+              key: "per",
+              label: "PER",
+              value: 27.0,
+            },
+            {
+              key: "tsPct",
+              label: "TS%",
+              value: 58.9,
+            },
+          ],
+        },
+      
+        bio:
+          "LeBron James is one of the most accomplished players in NBA history, known for his versatility, longevity, and impact on every team he has played for.",
       },
   ];
-  

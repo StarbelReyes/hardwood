@@ -1,16 +1,23 @@
 import { StyleSheet, Text, View } from "react-native";
 
-type StatCardProps = {
+type AwardCardProps = {
+  icon: string;
   label: string;
-  value: string | number;
+  value: number;
 };
 
-export function StatCard({ label, value }: StatCardProps) {
+export function AwardCard({
+  icon,
+  label,
+  value,
+}: AwardCardProps) {
   return (
     <View style={styles.card}>
-      <Text style={styles.label}>{label}</Text>
+      <Text style={styles.icon}>{icon}</Text>
 
       <Text style={styles.value}>{value}</Text>
+
+      <Text style={styles.label}>{label}</Text>
     </View>
   );
 }
@@ -20,6 +27,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#151B28",
     borderRadius: 16,
     paddingVertical: 20,
+    paddingHorizontal: 16,
+
     alignItems: "center",
 
     flex: 1,
@@ -27,15 +36,21 @@ const styles = StyleSheet.create({
     margin: 6,
   },
 
-  label: {
-    color: "#7B8794",
-    fontSize: 14,
+  icon: {
+    fontSize: 32,
+    marginBottom: 12,
   },
 
   value: {
     color: "white",
     fontSize: 28,
     fontWeight: "700",
-    marginTop: 8,
+  },
+
+  label: {
+    color: "#9AA4B2",
+    fontSize: 14,
+    textAlign: "center",
+    marginTop: 10,
   },
 });
