@@ -1,8 +1,12 @@
 export interface Player {
-    id: number;
-    name: string;
-    subtitle: string;
-    image: any;
+  id: number;
+  name: string;
+  subtitle: string;
+
+  image: any;
+
+  backgroundImage?: any;
+  cutoutImage?: any;
   
     info: {
       position: string;
@@ -53,6 +57,9 @@ export interface Player {
       name: "Michael Jordan",
       subtitle: "6× NBA Champion",
       image: require("../assets/images/jordan.jpg"),
+      
+      backgroundImage: require("../assets/images/jordan-background.png"),
+      cutoutImage: require("../assets/images/jordan cut-out.png"),
   
       info: {
         position: "Shooting Guard",

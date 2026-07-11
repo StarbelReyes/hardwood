@@ -4,60 +4,109 @@ import { Colors } from "@/theme/colors";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
+  Animated,
   ImageBackground,
   Pressable,
   StyleSheet,
-  Text
+  Text,
 } from "react-native";
+
+const AnimatedImageBackground =
+  Animated.createAnimatedComponent(ImageBackground);
+
 type PlayerCardProps = {
-    player: Player;
-  };
+  player: Player;
+};
 
-  export function PlayerCard({ player }: PlayerCardProps) {
-    const [favorite, setFavorite] = useState(false);
+export function PlayerCard({ player }: PlayerCardProps) {
+  const [favorite, setFavorite] = useState(false);
 
-useEffect(() => {
-  async function loadFavorite() {
-    const result = await isFavorite(player.id);
-    setFavorite(result);
-  }
+  const scale = useRef(new Animated.Value(1)).current;
+  const imageScale = useRef(new Animated.Value(1)).current;
 
-  loadFavorite();
-}, [player.id]);
+  useEffect(() => {
+    async function loadFavorite() {
+      const result = await isFavorite(player.id);
+      setFavorite(result);
+    }
+
+    loadFavorite();
+  }, [player.id]);
+
   return (
-    <Pressable
-  style={styles.card}
-  onPress={() => router.push(`/players/${player.id}`)}
->
-      <ImageBackground
-        source={player.image}
-        style={styles.image}
-        imageStyle={styles.imageBorder}
+    <Animated.View
+      style={{
+        transform: [{ scale }],
+      }}
+    >
+      <Pressable
+        style={styles.card}
+        onPressIn={() => {
+          Animated.spring(scale, {
+            toValue: 0.97,
+            useNativeDriver: true,
+          }).start();
+
+          Animated.spring(imageScale, {
+            toValue: 1.05,
+            useNativeDriver: true,
+          }).start();
+        }}
+        onPressOut={() => {}}
+        onPress={() => {
+          Animated.spring(scale, {
+            toValue: 1,
+            friction: 5,
+            tension: 120,
+            useNativeDriver: true,
+          }).start();
+
+          Animated.spring(imageScale, {
+            toValue: 1,
+            useNativeDriver: true,
+          }).start();
+
+          setTimeout(() => {
+            router.push(`/players/${player.id}`);
+          }, 120);
+        }}
       >
-<Pressable
-  style={styles.favoriteButton}
-  onPress={async () => {
-    const updated = await toggleFavorite(player.id);
-    setFavorite(updated.includes(player.id));
-  }}
->
-  <Ionicons
-    name={favorite ? "star" : "star-outline"}
-    size={28}
-    color="#FFD700"
-  />
-</Pressable>
-        <LinearGradient
-          colors={["transparent", "rgba(0,0,0,0.9)"]}
-          style={styles.overlay}
+        <AnimatedImageBackground
+          source={player.image}
+          style={[
+            styles.image,
+            {
+              transform: [{ scale: imageScale }],
+            },
+          ]}
+          imageStyle={styles.imageBorder}
         >
-          <Text style={styles.name}>{player.name}</Text>
-          <Text style={styles.subtitle}>{player.subtitle}</Text>
-        </LinearGradient>
-      </ImageBackground>
+          <Pressable
+            style={styles.favoriteButton}
+            onPress={async () => {
+              const updated = await toggleFavorite(player.id);
+              setFavorite(updated.includes(player.id));
+            }}
+          >
+            <Ionicons
+              name={favorite ? "star" : "star-outline"}
+              size={28}
+              color="#FFD700"
+            />
+          </Pressable>
+
+          <LinearGradient
+            colors={["transparent", "rgba(0,0,0,0.9)"]}
+            style={styles.overlay}
+          >
+            <Text style={styles.name}>{player.name}</Text>
+            <Text style={styles.subtitle}>{player.subtitle}</Text>
+          </LinearGradient>
+        </AnimatedImageBackground>
       </Pressable>
+    </Animated.View>
   );
 }
 
@@ -94,16 +143,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginTop: 6,
   },
+
   favoriteButton: {
     position: "absolute",
     top: 16,
     right: 16,
     zIndex: 10,
-  
     backgroundColor: "rgba(0,0,0,0.35)",
-  
     borderRadius: 999,
-  
     padding: 8,
   },
 });

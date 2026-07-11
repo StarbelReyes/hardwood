@@ -1,3 +1,4 @@
+import { AnimatedSection } from "@/components/profile/AnimatedSection";
 import { AwardCard } from "@/components/profile/AwardCard";
 import { InfoRow } from "@/components/profile/InfoRow";
 import { SpatialHero } from "@/components/profile/SpatialHero";
@@ -8,6 +9,7 @@ import { players } from "@/data/players";
 import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import {
+  Image,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -36,21 +38,31 @@ export default function PlayerScreen() {
       contentContainerStyle={styles.content}
       showsVerticalScrollIndicator={false}
     >
-   <SpatialHero
-  backgroundImage={require("@/assets/images/jordan-background.png")}
-  cutoutImage={require("@/assets/images/jordan cut-out.png")}
-/>
+{player.backgroundImage && player.cutoutImage ? (
+  <SpatialHero
+    backgroundImage={player.backgroundImage}
+    cutoutImage={player.cutoutImage}
+  />
+) : (
+  <Image
+    source={player.image}
+    style={styles.image}
+    resizeMode="cover"
+  />
+)}
 
       <Text style={styles.title}>{player.name}</Text>
 
       <Text style={styles.subtitle}>{player.subtitle}</Text>
-
+      <AnimatedSection delay={100}>
       <View style={styles.infoCard}>
   <InfoRow label="Position" value={player.info.position} />
   <InfoRow label="Height" value={player.info.height} />
   <InfoRow label="Weight" value={player.info.weight} />
 </View>
+</AnimatedSection>
 
+<AnimatedSection delay={200}>
       <Text style={styles.sectionTitle}>Career Statistics</Text>
 
       <View style={styles.statsGrid}>
@@ -62,6 +74,7 @@ export default function PlayerScreen() {
     />
   ))}
 </View>
+</AnimatedSection>
 
 <Pressable
   onPress={() => setShowAdvancedStats(!showAdvancedStats)}
