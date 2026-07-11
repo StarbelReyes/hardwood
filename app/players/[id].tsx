@@ -1,5 +1,6 @@
 import { AwardCard } from "@/components/profile/AwardCard";
 import { InfoRow } from "@/components/profile/InfoRow";
+import { SpatialHero } from "@/components/profile/SpatialHero";
 import { StatCard } from "@/components/profile/StatCard";
 import { TeamCard } from "@/components/profile/TeamCard";
 import { TimelineCard } from "@/components/profile/TimelineCard";
@@ -7,7 +8,6 @@ import { players } from "@/data/players";
 import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import {
-  ImageBackground,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -36,11 +36,10 @@ export default function PlayerScreen() {
       contentContainerStyle={styles.content}
       showsVerticalScrollIndicator={false}
     >
-      <ImageBackground
-        source={player.image}
-        style={styles.image}
-        imageStyle={styles.imageBorder}
-      />
+   <SpatialHero
+  backgroundImage={require("@/assets/images/jordan-background.png")}
+  cutoutImage={require("@/assets/images/jordan cut-out.png")}
+/>
 
       <Text style={styles.title}>{player.name}</Text>
 
