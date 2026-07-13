@@ -8,9 +8,16 @@ import {
   View,
 } from "react-native";
 
+import { Ionicons } from "@expo/vector-icons";
+
 import { PlayerCard } from "@/components/cards/PlayerCard";
 import { players } from "@/data/players";
-import { Colors } from "@/theme/colors";
+import {
+  Colors,
+  Radius,
+  Spacing,
+  Typography,
+} from "@/theme";
 
 export default function HomeScreen() {
   const [search, setSearch] = useState("");
@@ -25,18 +32,31 @@ export default function HomeScreen() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
       >
-        <View>
-          <Text style={styles.title}>🏀 Hardwood</Text>
-          <Text style={styles.subtitle}>The Home of NBA Legends</Text>
-        </View>
+       <View style={styles.header}>
+  <Text style={styles.badge}>NBA LEGENDS</Text>
 
-        <TextInput
-          placeholder="Search players..."
-          placeholderTextColor={Colors.muted}
-          value={search}
-          onChangeText={setSearch}
-          style={styles.search}
-        />
+  <Text style={styles.title}>Hardwood</Text>
+
+  <Text style={styles.subtitle}>
+    Discover the greatest players in basketball history.
+  </Text>
+</View>
+
+<View style={styles.searchContainer}>
+  <Ionicons
+    name="search"
+    size={20}
+    color={Colors.muted}
+  />
+
+  <TextInput
+    placeholder="Search NBA Legends..."
+    placeholderTextColor={Colors.muted}
+    value={search}
+    onChangeText={setSearch}
+    style={styles.searchInput}
+  />
+</View>
 
 {filteredPlayers.length > 0 ? (
   filteredPlayers.map((player) => (
@@ -64,35 +84,76 @@ const styles = StyleSheet.create({
 
   title: {
     color: Colors.text,
-    fontSize: 36,
-    fontWeight: "bold",
-    marginTop: 20,
+    fontSize: Typography.h1,
+    fontWeight: "800",
+    marginTop: Spacing.md,
   },
 
   subtitle: {
     color: Colors.muted,
-    fontSize: 18,
-    marginTop: 8,
+    fontSize: 17,
+    marginTop: 10,
+    lineHeight: 26,
   },
 
-  search: {
+  searchContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  
     backgroundColor: Colors.card,
+  
+    borderRadius: Radius.md,
+  
+    paddingHorizontal: Spacing.md,
+    height: 58,
+  
+    marginBottom: Spacing.lg, 
+  
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.06)",
+  },
+  
+  searchInput: {
+    flex: 1,
+  
     color: Colors.text,
-    borderRadius: 14,
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-    fontSize: 16,
-    marginTop: 20,
-    marginBottom: 20,
+  
+    fontSize: 17,
+  
+    marginLeft: 12,
   },
 
   content: {
-    paddingBottom: 40,
+    paddingBottom: Spacing.xxl,
   },
+ 
   emptyText: {
     color: Colors.muted,
     fontSize: 18,
     textAlign: "center",
     marginTop: 40,
+  },
+
+  header: {
+    marginTop: 16,
+    marginBottom: 28,
+  },
+  
+  badge: {
+    alignSelf: "flex-start",
+  
+    backgroundColor: "#1D4ED8",
+  
+    color: "white",
+  
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+  
+    borderRadius: 999,
+  
+    fontSize: 12,
+    fontWeight: "700",
+  
+    letterSpacing: 1,
   },
 });
